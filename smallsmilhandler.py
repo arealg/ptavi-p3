@@ -14,7 +14,9 @@ class SmallSMILHandler(ContentHandler):
 		self.reg = {'id': '', 'top': '', 'bottom': '', 'left': '',
 					'right': '' }
 		self.img = {'src': '','region':'', 'begin': '','dur':''}
-		# self.aud = {'src': '', 'begin':'', 'dur': ''}
+
+		self.aud = {'src': '', 'begin':'', 'dur': ''}
+
 		self.text = {'src':'','region':''}
 
 	# def get_tags(name,lista):
@@ -29,7 +31,7 @@ class SmallSMILHandler(ContentHandler):
 	def startElement(self, name, attrs):
 		etiqueta = {'root-layout': self.rl,'region':self.reg,
 		            'img': self.img,
-					# 'audio': self.audio,
+					'audio': self.aud,
 					'textstream': self.text}
 
 		if name in etiqueta:
@@ -39,18 +41,6 @@ class SmallSMILHandler(ContentHandler):
 				lista[i] = valor
 
 			print(lista)
-			# print(self.rl)
-			# print( self.reg)
-			# print( self.img)
-			# print( self.text)
-
-		# if name == 'region':
-		# 	for i in self.reg:
-		# 		valor = attrs.get(i,'')
-		# 		self.reg[i] = valor
-		#
-		# 	print(self.reg)
-
 
 
 if __name__ == '__main__':
