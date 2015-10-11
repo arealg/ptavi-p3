@@ -13,15 +13,11 @@ class SmallSMILHandler(ContentHandler):
 	def __init__(self):
 
 		self.rl = {'width': '','height':'','background-color': ''}
-
 		self.reg = {'id': '', 'top': '', 'bottom': '', 'left': '',
 					'right': '' }
 		self.img = {'src': '','region':'', 'begin': '','dur':''}
-
 		self.aud = {'src': '', 'begin':'', 'dur': ''}
-
 		self.text = {'src':'','region':''}
-
 		self.etiqueta = {'root-layout': self.rl,'region':self.reg,
 				    'img': self.img,
 					'audio': self.aud,
@@ -42,8 +38,6 @@ class SmallSMILHandler(ContentHandler):
 				lista[i] = valor
 			self.l.append(name)
 			self.l.append(lista)
-
-
 
 if __name__ == '__main__':
 
