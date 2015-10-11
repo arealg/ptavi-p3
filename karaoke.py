@@ -1,27 +1,27 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
+from __future__ import print_function
 import smallsmilhandler
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
 
-if len(sys.argv) == 2:
-	fichero = sys.argv[1]
-else:
+
+
+if len(sys.argv) != 2:
 	print('Usage: python3 karaoke.py file.smil')
 
 def ordenar(lista):
 	for valor in lista:
 		if valor == str(valor):
 			etiqueta = valor
-			sys.stdout.write(etiqueta + '\\')
+			print(etiqueta + '\\',end='')
 		else:
 			for i in valor.keys():
 				if valor[i] != '':
-					sys.stdout.write(i + '=' + '"' + valor[i]+ '"' + '\\')
-			sys.stdout.write('n')
+					print(i + '=' + '"' + valor[i]+ '"' + '\\',end='')
+			print('n',end='')
 			print()
 
 
@@ -30,5 +30,5 @@ if __name__ == '__main__':
 	parser = make_parser()
 	cHandler = smallsmilhandler.SmallSMILHandler()
 	parser.setContentHandler(cHandler)
-	parser.parse(open('karaoke.smil'))
+	parser.parse(open(sys.argv[1]))
 	ordenar(cHandler.get_tags())
