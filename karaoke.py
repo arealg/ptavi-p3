@@ -5,7 +5,7 @@ import smallsmilhandler
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
-
+import urllib.request
 
 
 
@@ -24,6 +24,17 @@ def ordenar(lista):
 			print('n',end='')
 			print()
 
+def descargar(lista):
+	for dicc in lista:
+		if dicc != str(dicc) :
+			for i in dicc:
+				if i == 'src':
+					u = dicc[i].split('http://www.content-networking.com/smil/')
+					if u[0] == '':
+						urllib.request.urlretrieve(dicc[i],u[1])
+
+
+
 
 if __name__ == '__main__':
 
@@ -31,4 +42,5 @@ if __name__ == '__main__':
 	cHandler = smallsmilhandler.SmallSMILHandler()
 	parser.setContentHandler(cHandler)
 	parser.parse(open(sys.argv[1]))
-	ordenar(cHandler.get_tags())
+	# ordenar(cHandler.get_tags())
+	descargar(cHandler.get_tags())
