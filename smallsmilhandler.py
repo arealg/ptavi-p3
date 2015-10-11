@@ -3,6 +3,7 @@
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+import sys
 
 
 
@@ -29,45 +30,18 @@ class SmallSMILHandler(ContentHandler):
 
 
 	def get_tags(self):
-		for i in self.etiqueta:
-			self.l.append(i)
-			self.l.append(self.etiqueta[i])
-		print(self.l)
+		return self.l
 
 
 	def startElement(self, name, attrs):
 
-
-		# print(self.l)
-		# if name == 'root-layout':
-		# 	for i in self.rl:
-		# 		valor = attrs.get(i,'')
-				# self.rl[i] = valor
-			# self.l.append(self.rl)
-			# print(self.rl)
-			# self.l.append(dic)
-		# if name == 'region':
-		# 	for i in self.reg:
-		# 		valor = attrs.get(i,'')
-		# 		self.reg[i] = valor
-		# 	put_list(self.reg)
-		# if name == 'audio':
-		# 	for i in self.aud:
-		# 		valor = attrs.get(i,'')
-		# 		self.aud[i] = valor
-		# 	self.l.append(self.aud)
-		# 	print(self.l)
-
-
-
-
-			# self.l.append(dic)
-
 		if name in self.etiqueta:
-			lista = self.etiqueta[name]
-			for i in lista:
+			lista = {}
+			for i in self.etiqueta[name]:
 				valor = attrs.get(i,'')
 				lista[i] = valor
+			self.l.append(name)
+			self.l.append(lista)
 
 
 
