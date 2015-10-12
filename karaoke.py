@@ -17,8 +17,6 @@ class KaraokeLocal():
 		parser.parse(open(fichero))
 		self.etiquetas = cHandler.get_tags()
 
-	# def __str__(etiquetas):
-
 
 	def __str__(self):
 		a = ''
@@ -33,24 +31,24 @@ class KaraokeLocal():
 				a = a + '\n'
 		a = a[:-1]
 		return a
-#
-#
-# def descargar(lista):
-# 	for dicc in lista:
-# 		if dicc != str(dicc):
-# 			for i in dicc:
-# 				u = dicc[i].split('/')
-# 				if i == 'src' and u[0] == 'http:':
-# 					urllib.request.urlretrieve(dicc[i],u[-1])
-#
-#
+
+
+	def do_local(self):
+		for dicc in self.etiquetas:
+			if dicc != str(dicc):
+				for i in dicc:
+					u = dicc[i].split('/')
+					if i == 'src' and u[0] == 'http:':
+						urllib.request.urlretrieve(dicc[i],u[-1])
+
+
 if __name__ == '__main__':
 
 	if len(sys.argv) != 2:
 		sys.exit('Usage: python3 karaoke.py file.smil')
 
 	karaoke = KaraokeLocal(sys.argv[1])
-	# print(karaoke.etiquetas)
 	elementos = karaoke.etiquetas
-	karaoke.ordenar()
-	# descargar(cHandler.get_tags())
+	print(karaoke.__str__())
+	do_local()
+	print(karoke.__str__())
