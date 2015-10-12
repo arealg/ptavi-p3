@@ -40,6 +40,7 @@ class KaraokeLocal():
 					u = dicc[i].split('/')
 					if i == 'src' and u[0] == 'http:':
 						urllib.request.urlretrieve(dicc[i],u[-1])
+						dicc[i] = u[-1]
 
 
 if __name__ == '__main__':
@@ -50,5 +51,5 @@ if __name__ == '__main__':
 	karaoke = KaraokeLocal(sys.argv[1])
 	elementos = karaoke.etiquetas
 	print(karaoke.__str__())
-	do_local()
-	print(karoke.__str__())
+	karaoke.do_local()
+	print(karaoke.__str__())
