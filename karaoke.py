@@ -8,39 +8,49 @@ from xml.sax.handler import ContentHandler
 import urllib.request
 
 
+class KaraokeLocal():
 
-if len(sys.argv) != 2:
-	print('Usage: python3 karaoke.py file.smil')
+	def __init__(self, fichero):
+		parser = make_parser()
+		cHandler = smallsmilhandler.SmallSMILHandler()
+		parser.setContentHandler(cHandler)
+		parser.parse(open(fichero))
+		self.etiquetas = cHandler.get_tags()
 
-def ordenar(lista):
-	for valor in lista:
-		if valor == str(valor):
-			etiqueta = valor
-			print(etiqueta + '\\',end='')
-		else:
-			for i in valor.keys():
-				if valor[i] != '':
-					print(i + '=' + '"' + valor[i]+ '"' + '\\',end='')
-			print('n',end='')
-			print()
-
-def descargar(lista):
-	for dicc in lista:
-		if dicc != str(dicc) :
-			for i in dicc:
-				if i == 'src':
-					u = dicc[i].split('http://www.content-networking.com/smil/')
-					if u[0] == '':
-						urllib.request.urlretrieve(dicc[i],u[1])
+	# def __str__(etiquetas):
 
 
-
-
+	def __str__(self):
+		a = ''
+		for valor in self.etiquetas:
+			if valor == str(valor):
+				etiqueta = valor
+				a += etiqueta + '\t'
+			else:
+				for i in valor.keys():
+					if valor[i] != '':
+						a += i + '=' + '"' + valor[i]+ '"' + '\t'
+				a = a + '\n'
+		a = a[:-1]
+		return a
+#
+#
+# def descargar(lista):
+# 	for dicc in lista:
+# 		if dicc != str(dicc):
+# 			for i in dicc:
+# 				u = dicc[i].split('/')
+# 				if i == 'src' and u[0] == 'http:':
+# 					urllib.request.urlretrieve(dicc[i],u[-1])
+#
+#
 if __name__ == '__main__':
 
-	parser = make_parser()
-	cHandler = smallsmilhandler.SmallSMILHandler()
-	parser.setContentHandler(cHandler)
-	parser.parse(open(sys.argv[1]))
-	# ordenar(cHandler.get_tags())
-	descargar(cHandler.get_tags())
+	if len(sys.argv) != 2:
+		sys.exit('Usage: python3 karaoke.py file.smil')
+
+	karaoke = KaraokeLocal(sys.argv[1])
+	# print(karaoke.etiquetas)
+	elementos = karaoke.etiquetas
+	karaoke.ordenar()
+	# descargar(cHandler.get_tags())
