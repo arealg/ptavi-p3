@@ -5,7 +5,7 @@ import smallsmilhandler
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
-import urllib.request
+import urllib.request as load
 import json
 
 
@@ -38,14 +38,13 @@ class KaraokeLocal():
 		with open(fich_json, 'w') as file:
 			json.dump(self.etiquetas, file, sort_keys=True, indent=4)
 
+
 	def do_local(self):
-		for dicc in self.etiquetas:
-			if dicc != str(dicc):
-				for i in dicc:
-					u = dicc[i].split('/')
-					if i == 'src' and u[0] == 'http:':
-						urllib.request.urlretrieve(dicc[i],u[-1])
-						dicc[i] = u[-1]
+		d = [dicc for dicc in self.etiquetas if dicc != str(dicc)]
+		for i in d:
+			if 'src' in i and 'http:' in i['src'].split('/')[0]:
+				load.urlretrieve(i['src'], i['src'].split('/')[-1])
+				i['src'] = i['src'].split('/')[-1]
 
 
 if __name__ == '__main__':
@@ -56,6 +55,6 @@ if __name__ == '__main__':
 	karaoke = KaraokeLocal(sys.argv[1])
 	print(karaoke.__str__())
 	# karaoke.do_json(sys.argv[1])
-	# karaoke.do_local()
+	karaoke.do_local()
 	# karaoke.do_json(sys.argv[1],'local.json')
-	# print(karaoke.__str__())
+	print(karaoke.__str__())
