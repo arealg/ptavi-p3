@@ -30,14 +30,18 @@ class SmallSMILHandler(ContentHandler):
 
 
 	def startElement(self, name, attrs):
-
 		if name in self.etiqueta:
-			lista = {}
-			for i in self.etiqueta[name]:
-				valor = attrs.get(i,'')
-				lista[i] = valor
+			lista = {i: attrs.get(i,'') for i in self.etiqueta[name]}
 			self.l.append(name)
 			self.l.append(lista)
+
+	# def startElement(self, name, attrs):
+	# 	if name in self.etiqueta:
+	# 		lista = {}
+	# 		for i in self.etiqueta[name]:
+	# 			lista[i]= attrs.get(i,'')
+	# 		self.l.append(name)
+	# 		self.l.append(lista)
 
 if __name__ == '__main__':
 
