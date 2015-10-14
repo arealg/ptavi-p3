@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 import smallsmilhandler
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import urllib.request
+import json
 
 
 class KaraokeLocal():
@@ -16,7 +17,6 @@ class KaraokeLocal():
 		parser.setContentHandler(cHandler)
 		parser.parse(open(fichero))
 		self.etiquetas = cHandler.get_tags()
-
 
 	def __str__(self):
 		a = ''
@@ -32,6 +32,11 @@ class KaraokeLocal():
 		a = a[:-1]
 		return a
 
+	def do_json(self, fich_smil, fich_json = ''):
+		if fich_json == '':
+			fich_json = fich_smil.split('.')[0] + '.json'
+		with open(fich_json, 'w') as file:
+			json.dump(self.etiquetas, file, sort_keys=True, indent=4)
 
 	def do_local(self):
 		for dicc in self.etiquetas:
@@ -49,7 +54,8 @@ if __name__ == '__main__':
 		sys.exit('Usage: python3 karaoke.py file.smil')
 
 	karaoke = KaraokeLocal(sys.argv[1])
-	elementos = karaoke.etiquetas
 	print(karaoke.__str__())
-	karaoke.do_local()
-	print(karaoke.__str__())
+	# karaoke.do_json(sys.argv[1])
+	# karaoke.do_local()
+	# karaoke.do_json(sys.argv[1],'local.json')
+	# print(karaoke.__str__())
