@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+    #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 from xml.sax import make_parser
@@ -18,7 +18,7 @@ class SmallSMILHandler(ContentHandler):
         self.etiqueta = {'root-layout': self.rl, 'region': self.reg,
                          'img': self.img, 'audio': self.aud,
                          'textstream': self.text}
-    self.l = []
+        self.l = []
 
     def get_tags(self):
         return self.l
