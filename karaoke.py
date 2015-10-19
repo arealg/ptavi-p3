@@ -4,7 +4,6 @@
 import smallsmilhandler
 import sys
 from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
 import urllib.request as load
 import json
 
@@ -22,8 +21,7 @@ class KaraokeLocal():
         lista_str = ''
         for tag_attrs in self.etiquetas:
             if tag_attrs == str(tag_attrs):
-                etiqueta = tag_attrs
-                lista_str += (etiqueta + '\t')
+                lista_str += (tag_attrs + '\t')
             else:
                 for valor in tag_attrs.keys():
                     if tag_attrs[valor] != '':
@@ -47,10 +45,8 @@ class KaraokeLocal():
 
 
 if __name__ == '__main__':
-
     if len(sys.argv) != 2:
         sys.exit('Usage: python3 karaoke.py file.smil')
-
     karaoke = KaraokeLocal(sys.argv[1])
     print(karaoke)
     karaoke.do_json(sys.argv[1])
