@@ -11,7 +11,7 @@ class SmallSMILHandler(ContentHandler):
     def __init__(self):
         rl = {'width': '', 'height': '', 'background-color': ''}
         reg = {'id': '', 'top': '', 'bottom': '', 'left': '',
-                    'right': ''}
+               'right': ''}
         img = {'src': '', 'region': '', 'begin': '', 'dur': ''}
         aud = {'src': '', 'begin': '', 'dur': ''}
         text = {'src': '', 'region': ''}
