@@ -23,17 +23,16 @@ class KaraokeLocal():
         for tag_attrs in self.etiquetas:
             if tag_attrs == str(tag_attrs):
                 etiqueta = tag_attrs
-                lista_str += etiqueta + '\t'
+                lista_str += (etiqueta + '\t')
             else:
                 for valor in tag_attrs.keys():
                     if tag_attrs[valor] != '':
                         lista_str += (valor + '=' + '"'
                                       + tag_attrs[valor] + '"' + '\t')
                 lista_str = (lista_str + '\n')
-        lista_str = lista_str[:-1]
-        return lista_str
+        return lista_str[:-1]
 
-    def do_json(self, fich_smil, fich_json = True):
+    def do_json(self, fich_smil, fich_json=True):
         if fich_json:
             fich_json = fich_smil.replace('.smil', '.json')
         with open(fich_json, 'w') as file:
