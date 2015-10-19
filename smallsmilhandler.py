@@ -9,15 +9,15 @@ import sys
 class SmallSMILHandler(ContentHandler):
 
     def __init__(self):
-        self.rl = {'width': '', 'height': '', 'background-color': ''}
-        self.reg = {'id': '', 'top': '', 'bottom': '', 'left': '',
+        rl = {'width': '', 'height': '', 'background-color': ''}
+        reg = {'id': '', 'top': '', 'bottom': '', 'left': '',
                     'right': ''}
-        self.img = {'src': '', 'region': '', 'begin': '', 'dur': ''}
-        self.aud = {'src': '', 'begin': '', 'dur': ''}
-        self.text = {'src': '', 'region': ''}
-        self.etiqueta = {'root-layout': self.rl, 'region': self.reg,
-                         'img': self.img, 'audio': self.aud,
-                         'textstream': self.text}
+        img = {'src': '', 'region': '', 'begin': '', 'dur': ''}
+        aud = {'src': '', 'begin': '', 'dur': ''}
+        text = {'src': '', 'region': ''}
+        self.etiqueta = {'root-layout': rl, 'region': reg,
+                         'img': img, 'audio': aud,
+                         'textstream': text}
         self.l = []
 
     def get_tags(self):
