@@ -53,8 +53,8 @@ if __name__ == '__main__':
         sys.exit('Usage: python3 karaoke.py file.smil')
 
     karaoke = KaraokeLocal(sys.argv[1])
-    print(karaoke.__str__())
+    print(karaoke)
     karaoke.do_json(sys.argv[1])
     karaoke.do_local()
     karaoke.do_json(sys.argv[1], 'local.json')
-    print(karaoke.__str__())
+    print(karaoke)
