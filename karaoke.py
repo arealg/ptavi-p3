@@ -31,7 +31,7 @@ class KaraokeLocal():
         return lista_str[:-1]
 
     def do_json(self, fich_smil, fich_json=True):
-        if fich_json:
+        if fich_json == True:
             fich_json = fich_smil.replace('.smil', '.json')
         with open(fich_json, 'w') as file:
             json.dump(self.etiquetas, file, sort_keys=True, indent=4)
